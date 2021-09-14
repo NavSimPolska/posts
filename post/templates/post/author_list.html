@@ -1,0 +1,12 @@
+{% extends "post/header.html" %}
+
+{% block list_authors %}
+        <h1 style="margin-left: 50px">Lista autorów...</h1>
+               <p style="font-size: 20px; margin-left: 60px">
+                    <ol style="font-size: 20px; margin-left: 50px">
+                        {% for a in autorzy %}
+                            <li><a href="author_details/{{ a.id }}">{{ a.nick }}</a></li>
+                        {% endfor %}
+                     </ol>
+                <p style="font-size: 12px; margin-left: 70px"><a href='/author_list'>Lista autorów</a>, <a href='/'>Lista postów</a></p>
+{% endblock %}}

@@ -1,0 +1,33 @@
+{% extends "post/header.html" %}
+
+{% block main %}
+    {% if title == "Lista postów" %}
+            <h1 style="margin-left: 50px">WITAJ</h1>
+
+               <p style="font-size: 25px; margin-left: 50px">
+                   Blog na temat Python'a.</p>
+                <ol style="font-size: 20px; margin-left: 50px">
+                     {% for m in posty %}
+                         <li><a href="{{ m.id }}">{{ m.title }}</a></li>
+                    {% endfor %}
+                </ol>
+
+    {% elif title == "Szczegóły posta" %}
+            <h1 style="margin-left: 50px">Post nr {{ post.id }}</h1>
+               <p style="font-size: 20px; margin-left: 60px">
+                   <b>Temat:</b> <u>{{ post.title }}</u><br><br>
+                   <b>Treść:&nbsp&nbsp</b> <i>{{ post.content }}</i></p>
+               <p style="font-size: 15px; margin-left: 70px">
+                   Autor: <a href="author_details/{{ post.author_id.id }}"><b>{{ post.author_id.nick }}</b></a><br>
+                   Data utworzenia: {{ post.created }}<br>
+                   Data modyfikacji: {{ post.modified }}<br>
+               </p>
+                <p style="font-size: 12px; margin-left: 70px"><a href='/'>Powrót do listy</a> </p>
+
+
+
+    {% elif title == "Dziekuje" %}
+            <h1 style="margin-left: 50px"><a href="http://localhost:8000/" style="text-decoration: none"><b>DZIĘKUJĘ</b></a></h1>
+    {% endif %}
+
+{% endblock %}}

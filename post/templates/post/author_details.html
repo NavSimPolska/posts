@@ -1,0 +1,9 @@
+{% extends "post/header.html" %}
+
+{% block details_post %}
+        <h1 style="margin-left: 50px">O autorze posta...</h1>
+               <p style="font-size: 20px; margin-left: 60px">
+                   <b>Autor:</b> {{ auth.nick }}<br><br>
+                   <b>e-mail autora:&nbsp&nbsp</b> <i>{{ auth.email }}</i></p>
+                <p style="font-size: 12px; margin-left: 70px"><a href='/author_list'>Lista autorów</a>, <a href='/'>Lista postów</a></p>
+{% endblock %}}
