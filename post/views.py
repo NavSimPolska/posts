@@ -25,3 +25,10 @@ def author_details(request, a):
    t = loader.get_template("post/author_details.html")
    c = {"title": "O autorze", "auth": auth}
    return HttpResponse(t.render(c))
+
+def add_post(request):
+   blank = Posts.objects.first()
+   autorzy = Author.objects.all()
+   t = loader.get_template("post/add_post.html")
+   c = {"title": "Nowy post", "autorzy": autorzy, "blank": blank}
+   return HttpResponse(t.render(c))

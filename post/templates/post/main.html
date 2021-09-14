@@ -2,15 +2,16 @@
 
 {% block main %}
     {% if title == "Lista postów" %}
-            <h1 style="margin-left: 50px">WITAJ</h1>
+            <h1 style="margin-left: 50px">Witaj</h1>
 
                <p style="font-size: 25px; margin-left: 50px">
-                   Blog na temat Python'a.</p>
+                   Dyskusja na temat Python'a.</p>
                 <ol style="font-size: 20px; margin-left: 50px">
                      {% for m in posty %}
-                         <li><a href="{{ m.id }}">{{ m.title }}</a></li>
+                         <li><a href="{{ m.id }}">{{ m.content|truncatewords:10 }}</a></li>
                     {% endfor %}
                 </ol>
+                <p> <a href="add_post">Dodaj nowy post</a></p>
 
     {% elif title == "Szczegóły posta" %}
             <h1 style="margin-left: 50px">Post nr {{ post.id }}</h1>
