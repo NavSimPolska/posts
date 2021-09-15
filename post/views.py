@@ -1,12 +1,19 @@
 from django.http import HttpResponse
 from django.template import Context, loader
 from post.models import Posts, Author
+from django.shortcuts import render
 
 def post_list(request):
    posty = Posts.objects.all()
-   t = loader.get_template("post/main.html")
+   if request.method == "POST":
+      dane = request.POST
+      print(len(dane), dane)
+      a = Author.objects.get(id = int(dane.get('author')))
+      if dane.get('temat') != '' and dane.get('tresc') != '':
+         Posts.objects.create(title = dane.get('temat'), content = dane.get('tresc'), author_id = a)
+         dane ={}
    c = {"title": "Lista postów", "posty": posty}
-   return HttpResponse(t.render(c))
+   return render(request, "post/main.html", c)
 
 def post_details(request, p):
    post = Posts.objects.get(id = p)
@@ -29,6 +36,5 @@ def author_details(request, a):
 def add_post(request):
    blank = Posts.objects.first()
    autorzy = Author.objects.all()
-   t = loader.get_template("post/add_post.html")
-   c = {"title": "Nowy post", "autorzy": autorzy, "blank": blank}
-   return HttpResponse(t.render(c))
+   c = {"title": "Nowy post", "autorzy": autorzy, "blank": blank,}
+   return render(request, "post/add_post.html", c)

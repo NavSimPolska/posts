@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
     <head>
@@ -7,6 +8,7 @@
     <body style="background-color: lightGrey; font-family: Calibri">
     <h1>Blog o Pythonie</h1>
 
+    <img src="{% static 'python_logo.png' %}" alt="My image"; height="30"; width="30">
     <div id="header" style="background-color: #00363a; padding: 10px; box-shadow: 3px 3px grey; margin-bottom: 10px">
         {% block header %}
 
