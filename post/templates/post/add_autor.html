@@ -1,0 +1,12 @@
+{% extends "post/header.html" %}
+
+{% block add_autor %}
+
+    <form method="post" style="margin-left: 50px;" action="/create_a">
+        {% csrf_token %}
+        <p style="font-size: 25px; margin-left: 50px">Podaj swoje dane:<br>
+            {{ form }}
+        <br><input type="submit" value="Wyslij" style="font-size: 25px; margin-left: 50px">
+    </form>
+
+{% endblock %}
