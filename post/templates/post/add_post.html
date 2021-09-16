@@ -2,7 +2,7 @@
 
 {% block add_post %}
 
-    <form method="post" style="margin-left: 50px;" action="/">
+    <form method="post" style="margin-left: 50px;" action="/create_p">
         {% csrf_token %}
                 <p style="font-size: 25px; margin-left: 50px">Temat
                 <label for="temat"></label>
@@ -21,15 +21,8 @@
                 <input type="submit" value="Wyslij" style="font-size: 25px; margin-left: 130px">
             </form>
 
+{% endblock %}
 
+{% block add_autor %}
 
-
-
-<!--       <label for="value">value: </label>-->
-<!--       <input type="text" name="value" id="value">-->
-<!--       <br>-->
-<!--       <label for="error">error: </label>-->
-<!--       <input type="text" name="error" id="value">-->
-<!--       <br>-->
-<!--       <input type="submit" value="go">-->
 {% endblock %}
