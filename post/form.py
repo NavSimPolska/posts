@@ -1,15 +1,12 @@
 from django import forms
+from post.models import Author, Posts
 
-class AddAutorsForm(forms.Form):
-    Nick = forms.CharField(label = 'Nick')
-    email = forms.EmailField(label = 'e-mail')
+class AuthorForm(forms.ModelForm):
+    class Meta:
+        model = Author
+        fields = ['nick', 'email']
 
-    def clean(self):
-        cleaned_data = super().clean()
-        Nick = cleaned_data.get('Nick')
-        email = cleaned_data.get('email')
-
-        if not (Nick or email):
-            raise forms.ValidationError('Nie podano wymaganych danych')
-        else:
-            raise forms.ValidationError('Bujaj sie')
+class PostForm(forms.ModelForm):
+    class Meta:
+        model = Posts
+        fields = ['title', 'content', 'author_id']

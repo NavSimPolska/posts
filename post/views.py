@@ -2,8 +2,7 @@ from django.http import HttpResponse
 from django.template import Context, loader
 from post.models import Posts, Author
 from django.shortcuts import render, redirect
-from post.form import AddAutorsForm
-
+from post.form import AuthorForm, PostForm
 
 
 def post_list(request):
@@ -30,30 +29,28 @@ def author_details(request, a):
    return HttpResponse(t.render(c))
 
 def add_post(request):
-   blank = Posts.objects.first()
    autorzy = Author.objects.all()
-   c = {"title": "Nowy post", "autorzy": autorzy, "blank": blank,}
+   c = {"title": "Nowy post", "autorzy": autorzy, 'form': PostForm}
    return render(request, "post/add_post.html", c)
 
 def add_autor(request):
    autorzy = Author.objects.all()
-   c = {"title": "Nowy autor", 'form': AddAutorsForm}
+   c = {"title": "Nowy autor", 'form': AuthorForm}
    return render(request, "post/add_autor.html", c)
 
 def create_p(request):
    if request.method == "POST":
       dane = request.POST
-      print(len(dane), dane)
-      a = Author.objects.get(id=int(dane.get('author')))
-      if dane.get('temat') != '' and dane.get('tresc') != '':
-         Posts.objects.create(title=dane.get('temat'), content=dane.get('tresc'), author_id=a)
+      form = PostForm(dane)
+      if form.is_valid():
+         form.save()
    return redirect('/')
 
 def create_a(request):
    if request.method == "POST":
       dane = request.POST
-      print(dane)
-      if dane.get('temat') != '' and dane.get('tresc') != '':
-         Author.objects.create(nick=dane.get('Nick'), email=dane.get('email'))
+      form =AuthorForm(dane)
+      if form.is_valid():
+         form.save()
    return redirect('/author_list')
 

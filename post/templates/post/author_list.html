@@ -7,7 +7,7 @@
                <p style="font-size: 20px; margin-left: 60px">
                     <ol style="font-size: 20px; margin-left: 50px">
                         {% for a in autorzy %}
-                            <li><a href="author_details/{{ a.id }}">{{ a.nick }}</a></li>
+                            <li><a href="{% url "posts:details_a" a.id %}">{{ a.nick }}</a></li>
                         {% endfor %}
                      </ol>
                 <p style="font-size: 12px; margin-left: 70px"><a href='/add_autor'>Dodaj autora</a>, <a href='/'>Lista postów</a></p>

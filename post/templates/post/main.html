@@ -8,7 +8,7 @@
                    Dyskusja na temat Python'a.</p>
                 <ol style="font-size: 20px; margin-left: 50px">
                      {% for m in posty %}
-                         <li><a href="{{ m.id }}">{{ m.content|truncatewords:10 }}</a></li>
+                         <li><a href="{% url "posts:details" m.id %}">{{ m.content|truncatewords:10 }}</a></li>
                     {% endfor %}
                 </ol>
                 <p> <a href="add_post">Dodaj nowy post</a></p>
@@ -19,16 +19,11 @@
                    <b>Temat:</b> <u>{{ post.title }}</u><br><br>
                    <b>Treść:&nbsp&nbsp</b> <i>{{ post.content }}</i></p>
                <p style="font-size: 15px; margin-left: 70px">
-                   Autor: <a href="author_details/{{ post.author_id.id }}"><b>{{ post.author_id.nick }}</b></a><br>
+                   Autor: <a href="{% url "posts:details_a" post.author_id.id %}"><b>{{ post.author_id.nick }}</b></a><br>
                    Data utworzenia: {{ post.created }}<br>
                    Data modyfikacji: {{ post.modified }}<br>
                </p>
                 <p style="font-size: 12px; margin-left: 70px"><a href='/'>Powrót do listy</a> </p>
-
-
-
-    {% elif title == "Dziekuje" %}
-            <h1 style="margin-left: 50px"><a href="http://localhost:8000/" style="text-decoration: none"><b>DZIĘKUJĘ</b></a></h1>
     {% endif %}
 
 {% endblock %}}

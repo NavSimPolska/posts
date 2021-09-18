@@ -4,22 +4,10 @@
 
     <form method="post" style="margin-left: 50px;" action="/create_p">
         {% csrf_token %}
-                <p style="font-size: 25px; margin-left: 50px">Temat
-                <label for="temat"></label>
-                    <input style="font-size: 25px; margin-left: 10px" type="text" id="temat" name="temat"></p>
-
-                <p style="font-size: 25px; margin-left: 50px">Treść&nbsp&nbsp
-                <label for="tresc"></label>
-                    <textarea style="font-size: 25px; margin-left: 10px" cols=50 rows=4 type="textbox" id="tresc" name="tresc" placeholder="Co masz do powiedzenia..."></textarea></p>
-
-                <p style="font-size: 25px; margin-left: 50px">Autor:&nbsp&nbsp
-                <select name="author" id="id_author">
-                    {% for i in autorzy %}
-                    <option style="font-size: 15px; margin-left: 10px" value={{ i.id }}>&nbsp&nbsp{{ i.nick }}&nbsp&nbsp</option>
-                    {% endfor %}
-                </select></p>
-                <input type="submit" value="Wyslij" style="font-size: 25px; margin-left: 130px">
-            </form>
+        <p style="font-size: 25px; margin-left: 50px">Podaj swoje dane:<br>
+            {{ form }}
+        <br><input type="submit" value="Dodaj" style="font-size: 25px; margin-left: 50px">
+    </form>
 
 {% endblock %}
 

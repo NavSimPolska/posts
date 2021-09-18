@@ -8,11 +8,10 @@ class Author(models.Model):
         return f"id:{self.id}, nick={self.nick}, email={self.email}"
 
 class Posts(models.Model):
-    title   =  models.CharField(max_length = 256, blank=True)
-    content =  models.TextField(blank=True)
+    title   =  models.CharField(max_length = 256, blank=False)
+    content =  models.TextField(blank=False)
     created =  models.DateTimeField(auto_now_add = True)
     modified = models.DateTimeField(auto_now=True)
-#    author_id = models.IntegerField(null=False)
     author_id =models.ForeignKey(Author, on_delete=models.CASCADE )
 
     def __str__(self):
