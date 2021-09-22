@@ -3,10 +3,15 @@ from django.template import Context, loader
 from post.models import Posts, Author
 from django.shortcuts import render, redirect
 from post.form import AuthorForm, PostForm
+from django.core.paginator import Paginator
 
 
 def post_list(request):
    posty = Posts.objects.all()
+   paginator = Paginator(posty, 3)
+   page_number = request.GET.get('page')
+   print(page_number)
+   posty = paginator.get_page(page_number)
    c = {"title": "Lista postów", "posty": posty}
    return render(request, "post/main.html", c)
 

@@ -8,9 +8,28 @@
                    Dyskusja na temat Python'a.</p>
                 <ol style="font-size: 20px; margin-left: 50px">
                      {% for m in posty %}
-                         <li><a href="{% url "posts:details" m.id %}">{{ m.content|truncatewords:10 }}</a></li>
+                         <li><a href="{% url "posts:details" m.id %}">[{{ m.title }}]:&nbsp&nbsp{{ m.content|truncatewords:10 }}</a></li>
                     {% endfor %}
                 </ol>
+                <br>
+                <div class="pagination" style="font-size: 15px; margin-left: 70px">
+                    <span class="step-links">
+                        {% if posty.has_previous %}
+                            <i><a href="?page=1">« pierwsza</a>
+                                <a href="?page={{ posty.previous_page_number }}">poprzednia</a></i>
+                        {% endif %}
+
+                    <span class="current">
+                        <b style="font-size: 20px"> &nbspStrona {{ posty.number }} / {{ posty.paginator.num_pages }}&nbsp</b>
+                    </span>
+
+                        {% if posty.has_next %}
+                           <i><a href="?page={{ posty.next_page_number }}">następna</a>
+                               <a href="?page={{ posty.paginator.num_pages }}">ostatnia »</a></i>
+                        {% endif %}
+   </span>
+   </div>
+
                 <p> <a href="add_post">Dodaj nowy post</a></p>
 
     {% elif title == "Szczegóły posta" %}

@@ -14,5 +14,9 @@ class Posts(models.Model):
     modified = models.DateTimeField(auto_now=True)
     author_id =models.ForeignKey(Author, on_delete=models.CASCADE )
 
+
     def __str__(self):
         return f"id:{self.id}, title={self.title}, content={self.content}, created={self.created}, author_id = {self.author_id}"
+
+    class Meta:
+        ordering = ['-title']
