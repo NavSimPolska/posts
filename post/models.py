@@ -6,6 +6,8 @@ class Author(models.Model):
 
     def __str__(self):
         return f"id:{self.id}, nick={self.nick}, email={self.email}"
+    class Meta:
+        ordering = ['nick']
 
 class Posts(models.Model):
     title   =  models.CharField(max_length = 256, blank=False)
@@ -19,4 +21,4 @@ class Posts(models.Model):
         return f"id:{self.id}, title={self.title}, content={self.content}, created={self.created}, author_id = {self.author_id}"
 
     class Meta:
-        ordering = ['-title']
+        ordering = ['created']

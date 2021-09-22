@@ -8,24 +8,24 @@ from django.core.paginator import Paginator
 
 def post_list(request):
    posty = Posts.objects.all()
-   paginator = Paginator(posty, 3)
+   paginator = Paginator(posty, 5)
    page_number = request.GET.get('page')
-   print(page_number)
    posty = paginator.get_page(page_number)
    c = {"title": "Lista postów", "posty": posty}
    return render(request, "post/main.html", c)
 
 def post_details(request, p):
    post = Posts.objects.get(id = p)
-   t = loader.get_template("post/main.html")
    c = {"title": "Szczegóły posta", "post": post}
-   return HttpResponse(t.render(c))
+   return render(request, "post/main.html", c)
 
 def author_list(request):
    autorzy = Author.objects.all()
-   t = loader.get_template("post/author_list.html")
+   paginator = Paginator(autorzy, 5)
+   page_number = request.GET.get('page')
+   autorzy = paginator.get_page(page_number)
    c = {"title": "Lista autorów", 'autorzy': autorzy}
-   return HttpResponse(t.render(c))
+   return render(request, "post/author_list.html", c)
 
 def author_details(request, a):
    auth = Author.objects.get(id = a)

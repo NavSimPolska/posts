@@ -5,10 +5,27 @@
             <p style="font-size: 25px; margin-left: 50px">
                    Autorzy na temat Python'a.</p>
                <p style="font-size: 20px; margin-left: 60px">
-                    <ol style="font-size: 20px; margin-left: 50px">
+                    <ul style="font-size: 20px; margin-left: 50px">
                         {% for a in autorzy %}
                             <li><a href="{% url "posts:details_a" a.id %}">{{ a.nick }}</a></li>
                         {% endfor %}
-                     </ol>
+                     </ul>
+ <div class="pagination" style="font-size: 12px; margin-left: 70px">
+                    <span class="step-links">
+                        {% if autorzy.has_previous %}
+                            <i><a href="?page=1">« pierwsza</a>
+                                <a href="?page={{ autorzy.previous_page_number }}">poprzednia</a></i>
+                        {% endif %}
+
+                    <span class="current">
+                        <b style="font-size: 20px"> &nbspStrona {{ autorzy.number }} / {{ autorzy.paginator.num_pages }}&nbsp</b>
+                    </span>
+
+                        {% if autorzy.has_next %}
+                           <i><a href="?page={{ autorzy.next_page_number }}">następna</a>
+                               <a href="?page={{ autorzy.paginator.num_pages }}">ostatnia »</a></i>
+                        {% endif %}
+   </span>
+   </div>
                 <p style="font-size: 12px; margin-left: 70px"><a href='/add_autor'>Dodaj autora</a>, <a href='/'>Lista postów</a></p>
 {% endblock %}}
